@@ -1,8 +1,13 @@
+import { useRouteError } from "react-router-dom"
 
 
 function ErrorPage(){
+    const error = useRouteError();  
+
     return <>
-        <h1> Une erreur est subvenue </h1>
+        <div>
+            
+        </div>    
     </>
 }
 
