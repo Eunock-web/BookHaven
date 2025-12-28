@@ -4,7 +4,7 @@ import { Login, Logout } from '../data/AuthFunctions';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null); //L'etat pour enregistrer les infos de l'utilisateur
 
     // Au démarrage, on regarde si une session existe
     useEffect(() => {
