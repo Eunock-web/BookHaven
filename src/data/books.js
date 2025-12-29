@@ -10,13 +10,12 @@ export const books = [
     rating: 4.7,
     reviewCount: 156,
     description: "Dans un royaume où la magie est punie de mort, une jeune héritière découvre qu'elle possède le pouvoir ancestral de manipuler les ombres. Ce récit épique explore les thèmes de la trahison, de la rédemption et du sacrifice. Au fil de plus de 500 pages de complots politiques et de batailles mystiques, l'héroïne devra choisir entre son trône et la survie de son peuple. Une immersion totale dans un univers sombre où chaque décision a un prix irréversible. Le lecteur est transporté des bas-fonds de la capitale aux sommets enneigés des montagnes interdites, rencontrant des alliés improbables et des ennemis terrifiants qui remettent en question la notion même de bien et de mal.",
-    coverImage: "freepik_prompt: photorealistic book cover, dark fantasy, mysterious woman manipulating shadows, cinematic lighting, moody atmosphere, 8k resolution, png format",
+    coverImage: "public/books/couverture/1.png",
     images: [
-      "freepik_prompt: ancient stone castle in a misty forest, dark fantasy style, png",
-      "freepik_prompt: glowing magical orb held by pale hands, sparks of shadow, png",
-      "freepik_prompt: medieval throne room, empty, dramatic shadows, moody lighting, png",
-      "freepik_prompt: cracked ancient map on old parchment, fantasy world map, png",
-      "freepik_prompt: dark knight armor standing in the rain, cinematic fantasy, png"
+        "public/books/principales/2.png",
+        "public/books/principales/3.png",
+        "public/books/principales/4.png",
+        "public/books/principales/5.png",
     ],
     publicationDate: "2023-05-12",
     stock: 24,
