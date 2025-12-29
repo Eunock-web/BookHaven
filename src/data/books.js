@@ -15,7 +15,6 @@ export const books = [
         "public/books/principales/2.png",
         "public/books/principales/3.png",
         "public/books/principales/4.png",
-        "public/books/principales/5.png",
     ],
     publicationDate: "2023-05-12",
     stock: 24,
