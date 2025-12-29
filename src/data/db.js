@@ -12,10 +12,11 @@ const init_db = () =>{
 }
 
 //Fonctionner qui retourne la liste des utilisateurs inscrits
-const getAllUser= () =>{
+export const getAllUser= () =>{
    return JSON.parse(localStorage.getItem('user_db')) || [];
 }
 
+init_db();  
 //Fonction pour créer un utilisateur
 export const createUser = (data)=>{
     const oldData = getAllUser();

@@ -1,7 +1,7 @@
 import {getAllUser} from './db';
 
 //Fonction pour la connexion de l'utilisateur
-export const Login = (email, password)=>{
+export const LoginAuth = (email, password)=>{
     const users = getAllUser();  
     const authenticatedUser = users.find((u)=>u.email === email && u.password === password)
 
@@ -9,8 +9,8 @@ export const Login = (email, password)=>{
         localStorage.setItem('user_session', JSON.stringify(authenticatedUser));
         return {
             "success" : true,
-            "response" :  `Bienvenue ${users.username}`,
-            "data" : users
+            "response" :  `Bienvenue ${authenticatedUser.username}`,
+            "data" : authenticatedUser
         }
     }else{
         return {

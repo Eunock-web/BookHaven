@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useCallback, useEffect } from 'react';
-import { Login, Logout } from '../data/AuthFunctions'; 
+import { LoginAuth, Logout } from '../data/AuthFunctions'; 
 
 const AuthContext = createContext();
 
@@ -11,7 +11,11 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const savedSession = localStorage.getItem('user_session');
         if (savedSession) {
-            setUser(JSON.parse(savedSession));
+            try {
+                setUser(JSON.parse(savedSession));
+            } catch (e) {
+                localStorage.removeItem('user_session'); 
+            }
         }
     }, []);
 
@@ -19,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     const login = useCallback((email, password) => {
         setErrors(null); //Initialisation de  l'etat a null a chaque appel de la fonction login
         
-        const result = Login(email, password);
+        const result = LoginAuth(email, password);
         if (result.success) {
             setUser(result.data); // Mise à jour de l'état 
         }else{
@@ -30,14 +34,14 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const logout = useCallback(() => {
-        setErrors(null); //Initialisation de  l'etat a null a chaque appel de la fonction logout
-       const result =  Logout();
-       if(!result.success){
-            setErrors(result.response); //Renvoyer le message d'erreur
-       }else{
-        setErrors(result.response); 
-        setUser(null); // L'interface se vide instantanément
-       }
+       const result = Logout();
+        if (result.success) {
+            setUser(null);
+            setErrors(null); // On nettoie les erreurs au logout
+            localStorage.removeItem('user_session'); 
+        } else {
+            setAuthError(result.response);
+        }
     }, []);
 
     return (
@@ -47,4 +51,4 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext);   

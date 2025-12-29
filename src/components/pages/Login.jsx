@@ -1,15 +1,23 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Mail, LockKeyhole, ArrowRight, BookOpen, BookOpenText } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const {login, errors} = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-        
+  // 1. Appeler la fonction login du contexte
+  const result = login(email, password);
+
+  // 2. Si succès, on navigue vers le home
+  if (result && result.success) {
+      navigate('/home');
+  }
   };
 
   return (
@@ -56,6 +64,11 @@ function Login() {
             <div className="flex flex-col gap-2  items-center">
                 <BookOpenText size={55} className=" text-blue-950 border p-2 border-gray-100 bg-gray-100 rounded-xl " />
             </div>
+                {errors && (
+    <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm font-medium animate-pulse">
+        {errors}
+    </div>
+    )}
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Champ Email */}
             <div className="space-y-2">
