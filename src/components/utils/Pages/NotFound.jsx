@@ -1,10 +1,11 @@
+import Home from "../../pages/Home";
 import NavBar from "../components/NavBar";
 
 
 function NotFound(){
     return <>
         <div>
-            <NavBar />
+            <Home />
         </div>
     </>
 }

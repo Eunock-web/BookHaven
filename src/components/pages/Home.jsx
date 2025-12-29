@@ -1,6 +1,9 @@
+import { useState } from "react"
 
 
 function Home(){
+    const [search, setSearch] = useState('');
+
     return <>
         <div>
 
