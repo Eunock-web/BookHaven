@@ -8,4 +8,21 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+    theme: {
+    extend: {
+      colors: {
+        "primary": "#1f3b61",
+        "primary-hover": "#162a45",
+        "secondary": "#d97706",
+        "background-light": "#f6f7f8",
+        "surface": "#ffffff",
+      },
+      fontFamily: {
+        serif: ["Playfair Display", "serif"],
+        display: ["Inter", "sans-serif"],
+      },
+    },
+  },
+
 })
+
