@@ -6,7 +6,7 @@ export const Login = (email, password)=>{
     const authenticatedUser = users.find((u)=>u.email === email && u.password === password)
 
     if(authenticatedUser){
-        localStorage.setItem('user_session', users.id);
+        localStorage.setItem('user_session', JSON.stringify(authenticatedUser));
         return {
             "success" : true,
             "response" :  `Bienvenue ${users.username}`,

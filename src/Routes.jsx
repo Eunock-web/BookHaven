@@ -1,3 +1,4 @@
+import Login from "./components/pages/Login";
 import ErrorPage from "./components/utils/Pages/ErrorPage";
 import Layout from "./components/utils/Pages/Layout";
 import NotFound from "./components/utils/Pages/NotFound";
@@ -13,7 +14,16 @@ const router = createBrowserRouter([
             {
                 path : "/home",
                 element : <NotFound />
-            } 
+            },
+            {
+                // index : true,
+                path:'/login',
+                element : <Login />
+            },
+            {
+                path : "*", 
+                element : <NotFound />
+            }
         ]
     }
 ]);

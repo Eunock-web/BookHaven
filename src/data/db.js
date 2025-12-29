@@ -1,5 +1,5 @@
 /**
- * Ce fichier est destiné à la creation des fonctions de creation de notre BBD (localStorage)
+ * Ce fichier est destiné  aux fonctions de creation de notre BBD (localStorage)
  */
 
 import { user } from "./user";
