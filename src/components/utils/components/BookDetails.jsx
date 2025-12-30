@@ -40,7 +40,7 @@ function BookDetail() {
                     {/* --- COLONNE GAUCHE : IMAGES --- */}
                     <div className="space-y-4">
                         <div className="aspect-3/4 rounded-2xl overflow-hidden bg-gray-100 border border-gray-100">
-                            <img src={`../${mainImage}`} alt={book.title} className="w-full h-full object-cover" />
+                            <img src={mainImage} alt={book.title} className="w-full h-full object-cover" />
                         </div>  
                         
                         {/* Galerie d'images secondaires */}
@@ -49,7 +49,7 @@ function BookDetail() {
                                 onClick={() => setMainImage(book.coverImage)}
                                 className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${mainImage === book.coverImage ? 'border-primary' : 'border-transparent'}`}
                             >
-                                <img src={`../${book.coverImage}`} className="w-full h-full object-cover" />
+                                <img src={book.coverImage} className="w-full h-full object-cover" />
                             </button>
                             {book.images.map((img, idx) => (
                                 <button 
@@ -57,7 +57,7 @@ function BookDetail() {
                                     onClick={() => setMainImage(img)}
                                     className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${mainImage === img ? 'border-primary' : 'border-transparent'}`}
                                 >
-                                    <img src={`../${img}`} className="w-full h-full object-cover" />
+                                    <img src={img} className="w-full h-full object-cover" />
                                 </button>
                             ))}
                         </div>
