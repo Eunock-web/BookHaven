@@ -1,8 +1,11 @@
 import  { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useFilters } from '../../context/FilterContext';
 import { books } from '../../data/books'; 
 import { Star, ShoppingCart, Heart, RotateCcw } from 'lucide-react';
 import { ListCatalogue } from '../../data/catalogueFunction';
+
+
 function Home() {
     const { filters, updateFilter, resetFilters } = useFilters();
     const [currentPage, setCurrentPage] = useState(1);
@@ -163,12 +166,15 @@ function Home() {
                                             {book.stock > 0 ? `En stock (${book.stock})` : 'Rupture'}
                                         </span>
                                     </div>
-                                    <button 
-                                        disabled={book.stock === 0}
-                                        className={`p-3 rounded-lg transition-colors ${book.stock > 0 ? 'bg-blue-900 text-white hover:bg-blue-800/90 hover:cursor-pointer ' : 'bg-gray-900 text-gray-400 cursor-not-allowed'}`}
-                                    >
-                                        <ShoppingCart size={18} />
-                                    </button>
+
+                                    <Link to={`book/${book.id}`} >
+                                        <button 
+                                            disabled={book.stock === 0}
+                                            className={`p-3 rounded-lg transition-colors ${book.stock > 0 ? 'bg-blue-900 text-white hover:bg-blue-800/90 hover:cursor-pointer ' : 'bg-gray-900 text-gray-400 cursor-not-allowed'}`}
+                                        >
+                                            <ShoppingCart size={18} />
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
