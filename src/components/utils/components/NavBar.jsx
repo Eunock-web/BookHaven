@@ -1,6 +1,7 @@
 import { BookOpen, Search, ShoppingCart, User2, Moon, Sun } from 'lucide-react';
 import { useFilters } from '../../../context/FilterContext'; 
 import { useAuth } from '../../../context/AuthContext';
+import {  Link } from 'react-router-dom';
 
 function NavBar() {
     const { filters, updateFilter } = useFilters();
@@ -11,14 +12,16 @@ function NavBar() {
             <div className="max-w-400 mx-auto px-6 h-full flex items-center justify-between gap-8">
                 
                 {/* LOGO & TITRE */}
-                <div className="flex items-center gap-2 cursor-pointer group">
-                    <div className="size-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                        <BookOpen size={24} className='text-blue-900' />
+                <Link to={'/home'} > 
+                    <div className="flex items-center gap-2 cursor-pointer group">
+                        <div className="size-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                            <BookOpen size={24} className='text-blue-900' />
+                        </div>
+                        <h1 className="text-blue-900 text-2xl font-display font-bold tracking-tight hidden sm:block">
+                            BookHaven
+                        </h1>
                     </div>
-                    <h1 className="text-blue-900 text-2xl font-display font-bold tracking-tight hidden sm:block">
-                        BookHaven
-                    </h1>
-                </div>
+                </Link>
 
                 {/* BARRE DE RECHERCHE (Connectée au Context) */}
                 <div className="hidden md:flex flex-1 max-w-2xl">
@@ -45,7 +48,8 @@ function NavBar() {
 
                     {/* Profil Utilisateur */}
                     <button className="flex items-center gap-2 p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
-                        {<User2 size={22} className='text-blue-900' /> && <span className="text-lg font-medium hidden lg:block">{user.username}</span>}
+                        <User2 size={22} className='text-blue-900' />
+                        {user && <span className="text-lg font-medium hidden lg:block">{user.username}</span>}
                     </button>
 
                     {/* Panier avec badge notification */}

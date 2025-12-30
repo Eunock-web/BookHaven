@@ -129,7 +129,7 @@ function Home() {
                     {currentBooks.map(book => (
                         <div key={book.id} className="group flex flex-col h-full bg-white rounded-xl overflow-hidden hover:shadow-soft transition-all duration-300 border border-gray-300 hover:border-gray-100">
                             {/* Image avec Overlay */}
-                            <div className="relative aspect-2/3 w-full overflow-hidden bg-gray-100">
+                            <Link to={`/book/${book.id}`} className="relative aspect-2/3 w-full overflow-hidden bg-gray-100">
                                 <img 
                                     src={book.coverImage} 
                                     alt={book.title} 
@@ -141,7 +141,7 @@ function Home() {
                                 {book.rating >= 4.8 && (
                                     <span className="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">COUP DE CŒUR</span>
                                 )}
-                            </div>
+                            </Link>
 
                             {/* Détails du livre */}
                             <div className="p-4 flex flex-col flex-1">
@@ -166,15 +166,12 @@ function Home() {
                                             {book.stock > 0 ? `En stock (${book.stock})` : 'Rupture'}
                                         </span>
                                     </div>
-
-                                    <Link to={`book/${book.id}`} >
-                                        <button 
-                                            disabled={book.stock === 0}
-                                            className={`p-3 rounded-lg transition-colors ${book.stock > 0 ? 'bg-blue-900 text-white hover:bg-blue-800/90 hover:cursor-pointer ' : 'bg-gray-900 text-gray-400 cursor-not-allowed'}`}
+                                     <button 
+                                        disabled={book.stock === 0}
+                                        className={`p-3 rounded-lg transition-colors ${book.stock > 0 ? 'bg-blue-900 text-white hover:bg-blue-800/90 hover:cursor-pointer ' : 'bg-gray-900 text-gray-400 cursor-not-allowed'}`}
                                         >
-                                            <ShoppingCart size={18} />
-                                        </button>
-                                    </Link>
+                                        <ShoppingCart size={18} />
+                                    </button>
                                 </div>
                             </div>
                         </div>

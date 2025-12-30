@@ -1,18 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { books } from '../data/books';
-import { Star, ShoppingCart, ArrowLeft, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
+import { books } from '../../../data/books';
+import { Star, ShoppingCart, ArrowLeft, ShieldCheck, Truck, RotateCcw, Heart } from 'lucide-react';
 
 function BookDetail() {
     const { id } = useParams();
-    // On cherche le livre correspondant à l'ID dans l'URL
-    const book = books.find(b => b.id === parseInt(id));
+    // On initialise à null ou vide pour éviter les erreurs au montage
+    const [mainImage, setMainImage] = useState("");
 
-    // État pour gérer l'image principale (zoom/galerie)
-    const [mainImage, setMainImage] = useState(book?.coverImage);
+    const book = books.find((b)=>b.id == Number(id));
+    // On met à jour l'image quand le livre est trouvé
+    useEffect(() => {
+        if (book) {
+            setMainImage(book.coverImage);
+        }
+    }, [book]);
 
-    if (!book) return <div className="pt-32 text-center">Livre non trouvé</div>;
-
+    if (!book) return (
+        <div className="pt-40 text-center space-y-4">
+            <h2 className="text-2xl font-bold text-gray-800">Livre non trouvé</h2>
+            <p className="text-gray-500">L'ID "{id}" ne correspond à aucun ouvrage.</p>
+            <Link to="/" className="text-blue-900 font-bold hover:underline inline-flex items-center gap-2">
+                <ArrowLeft size={18} /> Retourner au catalogue
+            </Link>
+        </div>
+    );
     return (
         <div className="pt-28 pb-16 bg-white">
             <div className="max-w-350 mx-auto px-6">
@@ -28,8 +40,8 @@ function BookDetail() {
                     {/* --- COLONNE GAUCHE : IMAGES --- */}
                     <div className="space-y-4">
                         <div className="aspect-3/4 rounded-2xl overflow-hidden bg-gray-100 border border-gray-100">
-                            <img src={mainImage} alt={book.title} className="w-full h-full object-cover" />
-                        </div>
+                            <img src={`../${mainImage}`} alt={book.title} className="w-full h-full object-cover" />
+                        </div>  
                         
                         {/* Galerie d'images secondaires */}
                         <div className="grid grid-cols-4 gap-4">
@@ -37,7 +49,7 @@ function BookDetail() {
                                 onClick={() => setMainImage(book.coverImage)}
                                 className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${mainImage === book.coverImage ? 'border-primary' : 'border-transparent'}`}
                             >
-                                <img src={book.coverImage} className="w-full h-full object-cover" />
+                                <img src={`../${book.coverImage}`} className="w-full h-full object-cover" />
                             </button>
                             {book.images.map((img, idx) => (
                                 <button 
@@ -45,7 +57,7 @@ function BookDetail() {
                                     onClick={() => setMainImage(img)}
                                     className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${mainImage === img ? 'border-primary' : 'border-transparent'}`}
                                 >
-                                    <img src={img} className="w-full h-full object-cover" />
+                                    <img src={`../${img}`} className="w-full h-full object-cover" />
                                 </button>
                             ))}
                         </div>
