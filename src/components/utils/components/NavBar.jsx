@@ -11,11 +11,11 @@ function NavBar() {
             <div className="max-w-400 mx-auto px-6 h-full flex items-center justify-between gap-8">
                 
                 {/* LOGO & TITRE */}
-                <div className="flex items-center gap-3 cursor-pointer group">
+                <div className="flex items-center gap-2 cursor-pointer group">
                     <div className="size-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                        <BookOpen size={24} />
+                        <BookOpen size={24} className='text-blue-900' />
                     </div>
-                    <h1 className="text-primary text-2xl font-display font-bold tracking-tight hidden sm:block">
+                    <h1 className="text-blue-900 text-2xl font-display font-bold tracking-tight hidden sm:block">
                         BookHaven
                     </h1>
                 </div>
@@ -39,19 +39,18 @@ function NavBar() {
                 {/*  ACTIONS DROITE */}
                 <div className="flex items-center gap-2 sm:gap-4">
                     {/* Bouton Thème (Visuel uniquement pour le moment) */}
-                    <button className="p-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
+                    {/* <button className="p-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
                         <Sun size={22} />
-                    </button>
+                    </button> */}
 
                     {/* Profil Utilisateur */}
                     <button className="flex items-center gap-2 p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
-                        <User2 size={22} />
-                        {user && <span className="text-sm font-medium hidden lg:block">{user.username}</span>}
+                        {<User2 size={22} className='text-blue-900' /> && <span className="text-lg font-medium hidden lg:block">{user.username}</span>}
                     </button>
 
                     {/* Panier avec badge notification */}
                     <button className="relative p-2.5 rounded-lg text-primary bg-primary/10 hover:bg-primary/20 transition-colors">
-                        <ShoppingCart size={22} />
+                        <ShoppingCart size={50} className='border border-gray-100 p-3 rounded-xl bg-gray-100' />
                         <span className="absolute top-1.5 right-1.5 h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-white"></span>
                     </button>
                 </div>

@@ -55,15 +55,15 @@ function Home() {
             <aside className="w-72 hidden lg:flex flex-col border-r border-[#e9edf1] bg-white h-[calc(100vh-5rem)] sticky top-20 overflow-y-auto">
                 <div className="p-6 space-y-8">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-lg font-bold font-display text-primary">Filtres</h2>
+                        <h2 className="text-2xl font-bold font-display text-blue-900">Filtres</h2>
                         <button onClick={resetFilters} className="text-primary hover:text-accent transition-colors">
-                            <RotateCcw size={18} />
+                            <RotateCcw size={24} className='text-blue-800 cursor-pointer' />
                         </button>
                     </div>
 
                     {/* Catégories Dynamiques */}
                     <div className="space-y-3">
-                        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400">Catégories</h3>
+                        <h3 className="text-lg font-semibold uppercase tracking-wider text-gray-400">Catégories</h3>
                         {categories.map(cat => (
                             <label key={cat} className="flex items-center gap-3 group cursor-pointer">
                                 <input 
@@ -81,7 +81,7 @@ function Home() {
 
                     {/* Prix */}
                     <div className="space-y-4">
-                        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400">Prix Max : <span className="text-primary font-bold">{filters.maxPrice}€</span></h3>
+                        <h3 className="text-lg font-semibold uppercase tracking-wider text-gray-400">Prix Max : <span className="text-blue-800 font-bold">{filters.maxPrice}€</span></h3>
                         <input 
                             type="range" min="10" max="50" 
                             value={filters.maxPrice}
@@ -112,7 +112,7 @@ function Home() {
             <main className="flex-1 p-8 bg-background-light">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                     <div>
-                        <h2 className="text-3xl font-display font-bold text-gray-900">Catalogue de Livres</h2>
+                        <h2 className="text-3xl font-display font-bold text-blue-900">Catalogue de Livres</h2>
                         <p className="text-gray-500 mt-1">
                             {filteredBooks.length > 0 
                                 ? `${filteredBooks.length} livres trouvés` 
@@ -124,7 +124,7 @@ function Home() {
                 {/* Grille de livres */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
                     {currentBooks.map(book => (
-                        <div key={book.id} className="group flex flex-col h-full bg-white rounded-xl overflow-hidden hover:shadow-soft transition-all duration-300 border border-transparent hover:border-gray-100">
+                        <div key={book.id} className="group flex flex-col h-full bg-white rounded-xl overflow-hidden hover:shadow-soft transition-all duration-300 border border-gray-300 hover:border-gray-100">
                             {/* Image avec Overlay */}
                             <div className="relative aspect-2/3 w-full overflow-hidden bg-gray-100">
                                 <img 
@@ -142,11 +142,11 @@ function Home() {
 
                             {/* Détails du livre */}
                             <div className="p-4 flex flex-col flex-1">
-                                <div className="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">{book.category}</div>
-                                <h3 className="font-display font-bold text-md text-gray-900 leading-tight mb-1 group-hover:text-primary transition-colors cursor-pointer line-clamp-1">
+                                <div className="text-[15px] font-bold text-blue-900 uppercase tracking-widest mb-1">{book.category}</div>
+                                <h3 className="font-display font-bold text-xl text-blue-950 leading-tight mb-1 group-hover:text-primary transition-colors cursor-pointer line-clamp-1">
                                     {book.title}
                                 </h3>
-                                <p className="text-xs text-gray-500 mb-3 italic">par {book.author}</p>
+                                <p className="text-lg text-gray-500 mb-3 italic">par <span className='text-blue-900'>{book.author}</span></p>
                                 
                                 {/* Étoiles */}
                                 <div className="flex items-center gap-1 mb-4">
@@ -156,7 +156,7 @@ function Home() {
                                 </div>
 
                                 {/* Prix et Action */}
-                                <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
+                                <div className="mt-auto pt-4 border-t border-gray-300 flex items-center justify-between">
                                     <div className="flex flex-col">
                                         <span className="text-lg font-bold text-primary">{book.price.toFixed(2)}€</span>
                                         <span className={`text-[10px] font-medium ${book.stock > 0 ? 'text-secondary' : 'text-red-500'}`}>
@@ -165,7 +165,7 @@ function Home() {
                                     </div>
                                     <button 
                                         disabled={book.stock === 0}
-                                        className={`p-2 rounded-lg transition-colors ${book.stock > 0 ? 'bg-primary text-white hover:bg-primary/90' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+                                        className={`p-3 rounded-lg transition-colors ${book.stock > 0 ? 'bg-blue-900 text-white hover:bg-blue-800/90 hover:cursor-pointer ' : 'bg-gray-900 text-gray-400 cursor-not-allowed'}`}
                                     >
                                         <ShoppingCart size={18} />
                                     </button>
