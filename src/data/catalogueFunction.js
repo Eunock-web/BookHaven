@@ -1,11 +1,11 @@
 import { books } from "./books"
 
 export const ListCatalogue = ()=>{
-    return  books.map(book=>book.category);
+    return  [...new Set(books.map(book=>book.category))];
 }
 
 export const ListLangues = ()=>{
-    return books.map(book=>book.language)
+    return [...new Set(books.map(book=>book.language))];
 }
 
 

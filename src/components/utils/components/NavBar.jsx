@@ -1,6 +1,6 @@
 import { BookOpen, Search, ShoppingCart, User2, Moon, Sun } from 'lucide-react';
-import { useFilters } from '../../context/FilterContext'; // Ajuste le chemin si besoin
-import { useAuth } from '../../context/AuthContext';
+import { useFilters } from '../../../context/FilterContext'; 
+import { useAuth } from '../../../context/AuthContext';
 
 function NavBar() {
     const { filters, updateFilter } = useFilters();

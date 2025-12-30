@@ -1,14 +1,15 @@
 import  { useState, useMemo } from 'react';
-import { useFilters } from '../context/FilterContext';
-import { books } from '../data/books'; // Import de ton fichier
-import { Star, ShoppingCart, Heart, Search, RotateCcw } from 'lucide-react';
-
+import { useFilters } from '../../context/FilterContext';
+import { books } from '../../data/books'; 
+import { Star, ShoppingCart, Heart, RotateCcw } from 'lucide-react';
+import { ListCatalogue } from '../../data/catalogueFunction';
 function Home() {
     const { filters, updateFilter, resetFilters } = useFilters();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
-
-    // --- LOGIQUE DE FILTRAGE DYNAMIQUE ---
+    const categories = useMemo(() => ListCatalogue(), []);
+    // const langues = useMemo(() => ListLangues(), []);
+    
     const filteredBooks = useMemo(() => {
         return books.filter(book => {
             // Recherche par titre ou auteur
@@ -63,7 +64,7 @@ function Home() {
                     {/* Catégories Dynamiques */}
                     <div className="space-y-3">
                         <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400">Catégories</h3>
-                        {["Fantasy", "Science-Fiction", "Aventure", "Thriller", "Romance"].map(cat => (
+                        {categories.map(cat => (
                             <label key={cat} className="flex items-center gap-3 group cursor-pointer">
                                 <input 
                                     type="checkbox" 
