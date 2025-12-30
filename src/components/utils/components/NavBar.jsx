@@ -44,10 +44,13 @@ function NavBar() {
                     
                     {/* Profil Utilisateur */}
                     <div className="flex items-center gap-1">
-                        <button className="flex items-center gap-2 p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors hover:cursor-pointer">
-                            <User2 size={22} className='text-blue-900' />
-                            {user && <span className="text-lg font-medium hidden lg:block">{user.username}</span>}
-                        </button>
+                        
+                        <Link to="/book/favorite">
+                            <button className="flex items-center gap-2 p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors hover:cursor-pointer">
+                                <User2 size={22} className='text-blue-900' />
+                                {user && <span className="text-lg font-medium hidden lg:block">{user.username}</span>}
+                            </button>
+                        </Link>
 
                         {/* BOUTON DECONNEXION (Apparaît si l'utilisateur est connecté) */}
                         {user && (

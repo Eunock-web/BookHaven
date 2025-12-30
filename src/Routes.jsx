@@ -1,4 +1,5 @@
 import Home from "./components/pages/Home";
+import Library from "./components/pages/Library";
 import Login from "./components/pages/Login";
 import BookDetail from "./components/utils/components/BookDetails";
 import ErrorPage from "./components/utils/Pages/ErrorPage";
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
             {
                 path:'/book/:id',
                 element : <BookDetail />
+            },
+
+            {
+                path:'/book/favorite',
+                element : <Library />
             },
 
             {

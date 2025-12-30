@@ -9,7 +9,7 @@ import {useFavorites} from '../../context/FavoriteContext';
 function Home() {
     const { filters, updateFilter, resetFilters } = useFilters();
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 8;
+    const itemsPerPage = 12;
     const categories = useMemo(() => ListCatalogue(), []);
     const { toggleFavorite, isFavorite } = useFavorites();
 
