@@ -4,13 +4,15 @@ import { useFilters } from '../../context/FilterContext';
 import { books } from '../../data/books'; 
 import { Star, ShoppingCart, Heart, RotateCcw } from 'lucide-react';
 import { ListCatalogue } from '../../data/catalogueFunction';
-
+import {useFavorites} from '../../context/FavoriteContext';
 
 function Home() {
     const { filters, updateFilter, resetFilters } = useFilters();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
     const categories = useMemo(() => ListCatalogue(), []);
+    const { toggleFavorite, isFavorite } = useFavorites();
+
     // const langues = useMemo(() => ListLangues(), []);
     
     const filteredBooks = useMemo(() => {
@@ -135,8 +137,11 @@ function Home() {
                                     alt={book.title} 
                                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" 
                                 />
-                                <button className="absolute top-3 right-3 h-8 w-8 rounded-full bg-white/90 backdrop-blur-sm text-gray-400 hover:text-red-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-sm">
-                                    <Heart size={18} />
+                                <button className="absolute top-3 right-3 h-8 w-8 rounded-full bg-white/90 backdrop-blur-sm text-gray-400 hover:text-red-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-sm" onClick={()=>toggleFavorite(book)}>
+                                    <Heart size={18}
+                                           fill={isFavorite(book.id) ? "red" : "none"} 
+                                           color={isFavorite(book.id) ? "red" : "currentColor"}
+                                    />
                                 </button>
                                 {book.rating >= 4.8 && (
                                     <span className="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">COUP DE CŒUR</span>

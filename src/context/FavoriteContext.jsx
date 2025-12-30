@@ -10,7 +10,7 @@ export function FavoriteProvider({ children }) {
     // Clé unique par utilisateur pour le localStorage
     const storageKey = user ? `favs_${user.id}` : null;
 
-    // 1. Charger les favoris au démarrage ou quand l'utilisateur change
+    // Charger les favoris au démarrage ou quand l'utilisateur change
     useEffect(() => {
         if (storageKey) {
             const savedFavs = localStorage.getItem(storageKey);
@@ -20,7 +20,7 @@ export function FavoriteProvider({ children }) {
         }
     }, [storageKey]);
 
-    // 2. Fonction Toggle (Ajoute si absent, supprime si présent)
+    // Fonction Toggle (Ajoute si absent, supprime si présent)
     const toggleFavorite = (book) => {
         if (!user) return alert("Connectez-vous pour ajouter des favoris !");
 
@@ -37,7 +37,7 @@ export function FavoriteProvider({ children }) {
         localStorage.setItem(storageKey, JSON.stringify(updatedFavs));
     };
 
-    // 3. Vérifier si un livre est favori
+    //  Vérifier si un livre est favori
     const isFavorite = (bookId) => favorites.some(fav => fav.id === bookId);
 
     return (
