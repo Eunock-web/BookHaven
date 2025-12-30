@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import  { useState, useMemo } from 'react';
 import { useFilters } from '../context/FilterContext';
 import { books } from '../data/books'; // Import de ton fichier
 import { Star, ShoppingCart, Heart, Search, RotateCcw } from 'lucide-react';
