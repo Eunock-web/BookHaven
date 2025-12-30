@@ -1,5 +1,4 @@
 import { AuthProvider } from "./context/AuthContext"
-import { BookProvider } from "./context/BookContext"
 import { FavoriteProvider } from "./context/FavoriteContext"
 import { FilterProvider } from "./context/FilterContext"
 import router from "./Routes"
@@ -11,9 +10,7 @@ function App() {
     <AuthProvider>
       <FilterProvider>
         <FavoriteProvider >
-          <BookProvider>
-            <RouterProvider router={router} />
-          </BookProvider>
+        <RouterProvider router={router} />
         </FavoriteProvider>
       </FilterProvider>
     </AuthProvider>
