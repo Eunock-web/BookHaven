@@ -20,7 +20,7 @@ function BookDetail() {
         <div className="pt-40 text-center space-y-4">
             <h2 className="text-2xl font-bold text-gray-800">Livre non trouvé</h2>
             <p className="text-gray-500">L'ID "{id}" ne correspond à aucun ouvrage.</p>
-            <Link to="/" className="text-blue-900 font-bold hover:underline inline-flex items-center gap-2">
+            <Link to="/" className="text-blue-950 font-bold hover:underline inline-flex items-center gap-2">
                 <ArrowLeft size={18} /> Retourner au catalogue
             </Link>
         </div>
@@ -30,7 +30,7 @@ function BookDetail() {
             <div className="max-w-350 mx-auto px-6">
                 
                 {/* Bouton Retour */}
-                <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-primary mb-8 transition-colors">
+                <Link to="/" className="inline-flex items-center gap-2 text-blue-900 hover:text-primary mb-8 transition-colors">
                     <ArrowLeft size={20} />
                     <span>Retour au catalogue</span>
                 </Link>
@@ -66,22 +66,22 @@ function BookDetail() {
                     {/* --- COLONNE DROITE : INFOS --- */}
                     <div className="flex flex-col">
                         <div className="mb-6">
-                            <span className="text-primary font-bold uppercase tracking-widest text-sm">{book.category}</span>
+                            <span className="text-blue-900 font-bold uppercase tracking-widest text-lg">{book.category}</span>
                             <h1 className="text-4xl font-display font-bold text-gray-900 mt-2 mb-4 leading-tight">
                                 {book.title}
                             </h1>
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-1 text-accent">
-                                    <Star size={20} fill="currentColor" />
-                                    <span className="font-bold text-lg">{book.rating}</span>
+                                    <Star size={20} fill="currentColor" className='text-blue-700' />
+                                    <span className="font-bold text-lg text-blue-700">{book.rating}</span>
                                     <span className="text-gray-400 font-normal">({book.reviewCount} avis)</span>
                                 </div>
                                 <span className="text-gray-300">|</span>
-                                <span className="text-gray-600 italic">par <span className="font-semibold text-gray-900">{book.author}</span></span>
+                                <span className="text-gray-600 italic">Par <span className="font-semibold text-blue-900">{book.author}</span></span>
                             </div>
                         </div>
 
-                        <div className="text-3xl font-bold text-primary mb-8">
+                        <div className="text-3xl font-bold text-blue-900 mb-8">
                             {book.price.toFixed(2)}€
                         </div>
 
