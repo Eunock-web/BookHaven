@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useCallback, useEffect } from 'react';
-import { LoginAuth, Logout } from '../data/AuthFunctions'; 
+import { LoginAuth, Logout, RegisterAuth } from '../data/AuthFunctions';
 
 const AuthContext = createContext();
 
@@ -33,19 +33,32 @@ export const AuthProvider = ({ children }) => {
         return result;
     }, []);
 
+    // Inscription : crée le compte puis ouvre la session
+    const register = useCallback((username, email, password) => {
+        setErrors(null);
+
+        const result = RegisterAuth(username, email, password);
+        if (result.success) {
+            setUser(result.data);
+        } else {
+            setErrors(result.response);
+        }
+
+        return result;
+    }, []);
+
     const logout = useCallback(() => {
-       const result = Logout();
+        const result = Logout();
         if (result.success) {
             setUser(null);
             setErrors(null); // On nettoie les erreurs au logout
-            localStorage.removeItem('user_session'); 
         } else {
-            setAuthError(result.response);
+            setErrors(result.response);
         }
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, errors }}>
+        <AuthContext.Provider value={{ user, login, register, logout, errors }}>
             {children}
         </AuthContext.Provider>
     );
