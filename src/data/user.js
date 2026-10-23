@@ -49,14 +49,6 @@ export const user = [
     },
 
     {
-        id: 7,
-        username : "Light",
-        email : "erwinmith@gmail.com",
-        role : 'admin',
-        password : "gogoislife"
-    },
-
-    {
         id: 8,
         username : "Youga",
         email : "youga@gmail.com",
