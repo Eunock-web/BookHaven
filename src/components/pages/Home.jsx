@@ -1,4 +1,4 @@
-import  { useState, useMemo } from 'react';
+import  { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useFilters } from '../../context/FilterContext';
 import { books } from '../../data/books'; 
@@ -17,9 +17,11 @@ function Home() {
     
     const filteredBooks = useMemo(() => {
         return books.filter(book => {
-            // Recherche par titre ou auteur
-            const matchesSearch = book.title.toLowerCase().includes(filters.search.toLowerCase()) || 
-                                 book.author.toLowerCase().includes(filters.search.toLowerCase());
+            // Recherche par titre, auteur ou ISBN
+            const query = filters.search.trim().toLowerCase();
+            const matchesSearch = book.title.toLowerCase().includes(query) || 
+                                 book.author.toLowerCase().includes(query) ||
+                                 book.isbn.toLowerCase().includes(query);
             
             // Filtre par catégories (si aucune sélectionnée, on affiche tout)
             const matchesCategory = filters.categories.length === 0 || filters.categories.includes(book.category);
@@ -38,6 +40,11 @@ function Home() {
 
             return matchesSearch && matchesCategory && matchesPrice && matchesLanguage && matchesStock && matchesRating;
         });
+    }, [filters]);
+
+    // Revenir à la première page dès qu'un filtre change
+    useEffect(() => {
+        setCurrentPage(1);
     }, [filters]);
 
     // --- PAGINATION ---
@@ -137,7 +144,7 @@ function Home() {
                                     alt={book.title} 
                                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" 
                                 />
-                                <button className="absolute top-3 right-3 h-8 w-8 rounded-full bg-white/90 backdrop-blur-sm text-gray-400 hover:text-red-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-sm" onClick={()=>toggleFavorite(book)}>
+                                <button className="absolute top-3 right-3 h-8 w-8 rounded-full bg-white/90 backdrop-blur-sm text-gray-400 hover:text-red-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-sm" onClick={(e)=>{ e.preventDefault(); e.stopPropagation(); toggleFavorite(book); }}>
                                     <Heart size={18}
                                            fill={isFavorite(book.id) ? "red" : "none"} 
                                            color={isFavorite(book.id) ? "red" : "currentColor"}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFavorites } from '../../context/FavoriteContext';
 import { BookOpen, Star, Plus } from 'lucide-react';
-import { Link, Links } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Library = () => {
     const { favorites, toggleFavorite } = useFavorites();

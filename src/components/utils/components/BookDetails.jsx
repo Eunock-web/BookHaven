@@ -8,7 +8,7 @@ function BookDetail() {
     // On initialise à null ou vide pour éviter les erreurs au montage
     const [mainImage, setMainImage] = useState("");
 
-    const book = books.find((b)=>b.id == Number(id));
+    const book = books.find((b)=>b.id === Number(id));
     // On met à jour l'image quand le livre est trouvé
     useEffect(() => {
         if (book) {
