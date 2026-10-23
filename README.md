@@ -1,16 +1,56 @@
-# React + Vite
+# BookHaven
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An online bookstore front end: browse a catalogue of 55 books, filter and search it, sign in, and keep a personal list of favourites.
 
-Currently, two official plugins are available:
+**Live demo:** https://bookhaven-tau.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Catalogue** — paginated grid (12 books per page) with cover, category, author, rating, price and stock status.
+- **Search and filters** — by title, author or ISBN, plus category, maximum price, minimum rating, language and "in stock only".
+- **Book page** — image gallery, summary, price, ISBN, publisher and publication date.
+- **Accounts** — register, sign in and sign out; the session survives a page reload.
+- **Favourites** — each user has their own list, saved per account, on a private page that redirects to the login screen when signed out.
+- **Responsive** layout.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the ESLint configuration
+React 19 · Vite 7 · Tailwind CSS 4 · React Router 7 · lucide-react
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+State is shared through React Context (`AuthContext`, `FavoriteContext`, `FilterContext`). There is no backend: users, sessions and favourites are stored in the browser's `localStorage`, and the catalogue is a local data file.
+
+> **Demo only.** Accounts and passwords live in `localStorage` in clear text, which is fine for a front-end exercise and must not be reused as a real authentication system.
+
+## Getting started
+
+```bash
+npm install
+npm run dev      # development server
+npm run build    # production build
+npm run lint     # ESLint
+npm run preview  # preview the production build
+```
+
+A few demo accounts are defined in `src/data/user.js`; you can also create your own from the registration page.
+
+## Project structure
+
+```
+src/
+├── Routes.jsx                  # /, /home, /login, /register, /book/:id, /book/favorite
+├── context/                    # Auth, Favorite and Filter providers
+├── data/                       # books, seed users, localStorage "database", auth helpers
+└── components/
+    ├── pages/                  # Home, Login, Register, Library (favourites)
+    └── utils/                  # NavBar, Footer, BookDetails, PrivateRoute, error pages
+```
+
+## Work in progress
+
+- Shopping cart: the cart buttons are present but not wired yet.
+- Admin dashboard (`AdminDashboard.jsx`, `BookModal.jsx`): written but not routed, pending the book-management context.
+- Social login buttons and "forgot password" are placeholders.
+
+## Author
+
+Built by [Eunock Yvan Aïhounhin](https://github.com/Eunock-web).
